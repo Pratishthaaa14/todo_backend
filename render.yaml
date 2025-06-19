@@ -1,14 +1,12 @@
 services:
   - type: web
     name: todo-backend
-    env: node
-    buildCommand: npm install
-    startCommand: node server.js
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn core.wsgi:application
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 5000
       - key: MONGODB_URI
         sync: false
       - key: JWT_SECRET

@@ -12,6 +12,13 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('postgresql://todo_db_iz6x_user:mWB6871fL5IMTS5tg5Ts5peFgGr8N1aL@dpg-d1a1e92li9vc73altr6g-a/todo_db_iz6x')
+    )
+}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +31,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '84606b72d94829e337e75fe014eb94d8847031e9429dc44f5522ff50620ca403'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "todo-backend-7swg.onrender.com",
+    "localhost",
+    "127.0.0.1"
+]
 
 
 # Application definition
@@ -83,13 +94,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB', 'your_db_name'),
-        'USER': os.environ.get('POSTGRES_USER', 'your_db_user'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'your_db_password'),
-        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
-        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+        'NAME': os.environ.get('todo_db_iz6x'),
+        'USER': os.environ.get('todo_db_iz6x_user'),
+        'PASSWORD': os.environ.get('mWB6871fL5IMTS5tg5Ts5peFgGr8N1aL'),
+        'HOST': os.environ.get('dpg-d1a1e92li9vc73altr6g-a'),
+        'PORT': os.environ.get('5432'),
     }
 }
+
 
 
 # Password validation
@@ -126,7 +138,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -159,7 +172,6 @@ DJOSER = {
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    "https://todo-backend-7swg.onrender.com",
 ]
 CORS_ALLOW_CREDENTIALS = True
