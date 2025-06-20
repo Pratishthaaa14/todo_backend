@@ -9,19 +9,18 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
-from pathlib import Path
 import os
+from pathlib import Path
+from dotenv import load_dotenv
 import dj_database_url
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('postgresql://todo_db_iz6x_user:mWB6871fL5IMTS5tg5Ts5peFgGr8N1aL@dpg-d1a1e92li9vc73altr6g-a/todo_db_iz6x')
-    )
-}
+load_dotenv() 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+DATABASES = {
+    'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
+}
 
 
 # Quick-start development settings - unsuitable for production
@@ -99,6 +98,7 @@ DATABASES = {
         'PASSWORD': os.environ.get('mWB6871fL5IMTS5tg5Ts5peFgGr8N1aL'),
         'HOST': os.environ.get('dpg-d1a1e92li9vc73altr6g-a'),
         'PORT': os.environ.get('5432'),
+        
     }
 }
 
@@ -173,5 +173,6 @@ DJOSER = {
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     "https://todo-backend-7swg.onrender.com",
+    "https://todo-frontend-git-main-pratishtha-singhs-projects.vercel.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
