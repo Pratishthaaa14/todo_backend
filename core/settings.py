@@ -178,6 +178,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",  # for local React dev
     # Add your actual Vercel production URL here (from Vercel dashboard)
     "https://your-vercel-production-url.vercel.app",
+    "todo-frontend-4btvpmydy-pratishtha-singhs-projects.vercel.app",
+    "todo-frontend-git-main-pratishtha-singhs-projects.vercel.app",
+    "todo-frontend-beta-lemon.vercel.app",
 ]
 CORS_ALLOW_HEADERS = [
     "accept",
