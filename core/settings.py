@@ -19,10 +19,10 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL')
+    )
 }
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -90,17 +90,17 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('todo_db_iz6x'),
-        'USER': os.environ.get('todo_db_iz6x_user'),
-        'PASSWORD': os.environ.get('mWB6871fL5IMTS5tg5Ts5peFgGr8N1aL'),
-        'HOST': os.environ.get('dpg-d1a1e92li9vc73altr6g-a'),
-        'PORT': os.environ.get('5432'),
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'todo_db_iz6x',
+#         'USER': 'todo_db_iz6x_user',
+#         'PASSWORD':'mWB6871fL5IMTS5tg5Ts5peFgGr8N1aL',
+#         'HOST':'dpg-d1a1e92li9vc73altr6g-a',
+#         'PORT':'5432',
         
-    }
-}
+#     }
+# }
 
 
 
@@ -170,10 +170,14 @@ DJOSER = {
     'SERIALIZERS': {},
 }
 
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "https://todo-backend-7swg.onrender.com",
     "https://todo-frontend-git-main-pratishtha-singhs-projects.vercel.app",
+    "http://localhost:3000",  # for local React dev
+    "http://127.0.0.1:3000",  # for local React dev
+    # Add your actual Vercel production URL here (from Vercel dashboard)
+    "https://your-vercel-production-url.vercel.app",
 ]
 CORS_ALLOW_HEADERS = [
     "accept",
