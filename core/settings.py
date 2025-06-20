@@ -175,4 +175,25 @@ CORS_ALLOWED_ORIGINS = [
     "https://todo-backend-7swg.onrender.com",
     "https://todo-frontend-git-main-pratishtha-singhs-projects.vercel.app",
 ]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
 CORS_ALLOW_CREDENTIALS = True
