@@ -30,12 +30,13 @@ DATABASES = {
 SECRET_KEY = '84606b72d94829e337e75fe014eb94d8847031e9429dc44f5522ff50620ca403'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "todo-backend-7swg.onrender.com",
     "localhost",
-    "127.0.0.1"
+    "127.0.0.1",
+    "todo-frontend-git-main-pratishtha-singhs-projects.vercel.app",  # <-- Add your actual Vercel domain here
 ]
 
 
@@ -171,17 +172,7 @@ DJOSER = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = [
-    "https://todo-backend-7swg.onrender.com",
-    "https://todo-frontend-git-main-pratishtha-singhs-projects.vercel.app",
-    "http://localhost:3000",  # for local React dev
-    "http://127.0.0.1:3000",  # for local React dev
-    # Add your actual Vercel production URL here (from Vercel dashboard)
-    "https://your-vercel-production-url.vercel.app",
-    "todo-frontend-4btvpmydy-pratishtha-singhs-projects.vercel.app",
-    "todo-frontend-git-main-pratishtha-singhs-projects.vercel.app",
-    "todo-frontend-beta-lemon.vercel.app",
-]
+# CORS_ALLOWED_ORIGINS = ['*']  # Removed, not needed
 CORS_ALLOW_HEADERS = [
     "accept",
     "accept-encoding",

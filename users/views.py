@@ -6,8 +6,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
+import logging
 
 User = get_user_model()
+
+logger = logging.getLogger(__name__)
 
 class RegisterView(APIView):
     permission_classes = []  # Allow any user to register
@@ -15,16 +18,23 @@ class RegisterView(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
-            user: User = serializer.save()   # type: ignore
-            refresh = RefreshToken.for_user(user)
-            return Response({
-                "data": {
-                    "_id": str(user.id),
-                    "email": user.email,
-                    "username": user.username,
-                },
-                "token": str(refresh.access_token)
-            }, status=status.HTTP_201_CREATED)
+            try:
+                user: User = serializer.save()   # type: ignore
+                refresh = RefreshToken.for_user(user)
+                return Response({
+                    "data": {
+                        "_id": str(user.id),
+                        "email": user.email,
+                        "username": user.username,
+                    },
+                    "token": str(refresh.access_token)
+                }, status=status.HTTP_201_CREATED)
+            except Exception as e:
+                logger.error(f"Registration failed: {e}", exc_info=True)
+                return Response(
+                    {"detail": f"Registration failed: {str(e)}"},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(APIView):
